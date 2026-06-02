@@ -5,24 +5,24 @@ using System.Text;
 
 namespace CarRental.Domain.ValueObjects
 {
-    public sealed class Email
+    public sealed class FullName
     {
-        public string Value { get;  }
+        public string Value { get; }
 
-        private Email(string value)
+        private FullName(string value)
         {
             Value = value;
         }
 
-        public static _Result<Email> Create(string email)
+        public static _Result<FullName> Create(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return "Email cannot be empty.";
 
-            if (!email.Contains("@"))
-                return "Invalid email format.";
+            if (fullName.Trim().Length < 3)
+                return "Full name must contain at least 3 characters.";
 
-            return new Email(email);
+            return new FullName(email);
         }
     }
 }

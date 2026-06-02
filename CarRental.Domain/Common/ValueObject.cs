@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarRental.Domain.ValueObjects
+namespace CarRental.Domain.Common
 {
-    internal class ValueObject
+    public class ValueObject
     {
     }
 }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace CarRental.Domain.Common
 {
-    internal class BaseEntity
+    public class BaseEntity
     {
+        public Guid Id { get; protected set; }
     }
 }

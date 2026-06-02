@@ -4,7 +4,10 @@ using System.Text;
 
 namespace CarRental.Domain.Common
 {
-    internal class BaseAuditableEntity
+    public class BaseAuditableEntity : BaseEntity
     {
+        public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; protected set; }
+        public DateTime? DeletedAt { get; protected set; }
     }
 }
