@@ -9,6 +9,7 @@ namespace CarRental.Domain.ValueObjects
     {
         public string Value { get; }
 
+        private PassportNumber() { }
         private PassportNumber(string value)
         {
             Value = value;

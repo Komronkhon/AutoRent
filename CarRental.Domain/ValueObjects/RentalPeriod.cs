@@ -10,6 +10,8 @@ namespace CarRental.Domain.ValueObjects
         public DateTime StartDate { get; }
         public DateTime EndDate { get; }
 
+        private RentalPeriod() { }
+
         private RentalPeriod(DateTime startDate, DateTime endDate)
         {
             StartDate = startDate;

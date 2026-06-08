@@ -9,20 +9,22 @@ namespace CarRental.Domain.ValueObjects
     {
         public string Value { get; }
 
+        private FullName() { }
+
         private FullName(string value)
         {
             Value = value;
         }
 
-        public static _Result<FullName> Create(string email)
+        public static _Result<FullName> Create(string fullName)
         {
-            if (string.IsNullOrWhiteSpace(email))
+            if (string.IsNullOrWhiteSpace(fullName))
                 return "Email cannot be empty.";
 
             if (fullName.Trim().Length < 3)
                 return "Full name must contain at least 3 characters.";
 
-            return new FullName(email);
+            return new FullName(fullName);
         }
     }
 }

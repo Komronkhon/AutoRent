@@ -7,7 +7,9 @@ namespace CarRental.Domain.ValueObjects
 {
     public sealed class Email
     {
-        public string Value { get;  }
+        public string Value { get; private set; } = null!;
+
+        private Email() { }
 
         private Email(string value)
         {

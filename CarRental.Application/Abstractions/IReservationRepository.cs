@@ -14,6 +14,7 @@ namespace CarRental.Application.Abstractions
             CancellationToken cancellationToken);
 
         Task AddAsync(Reservation reservation, CancellationToken cancellationToken);
+        Task<List<Reservation>> GetAllAsync(CancellationToken cancellationToken);
         Task<Reservation?> GetByIdAsync(Guid reservationId, CancellationToken cancellationToken);
     }
 }
