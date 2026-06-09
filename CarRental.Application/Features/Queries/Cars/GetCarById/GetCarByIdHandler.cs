@@ -19,7 +19,7 @@ namespace CarRental.Application.Features.Queries.Cars.GetCarById
 
         public async Task<_Result<CarResponse>> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         {
-            var car = await _carRepository.GetByIdAsync(request.CarId, cancellationToken);
+            var car = await _carRepository.GetByGuidAsync(request.CarId, cancellationToken);
 
             if (car is null)
                 return "Car not found.";

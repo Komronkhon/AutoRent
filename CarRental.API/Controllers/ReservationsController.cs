@@ -1,7 +1,9 @@
-﻿using CarRental.Application.Features.Commands.Reservations.CancelReservation;
+﻿using CarRental.Application.Features.Commands.Cars.DeleteCar;
+using CarRental.Application.Features.Commands.Reservations.CancelReservation;
 using CarRental.Application.Features.Commands.Reservations.CompleteReservation;
 using CarRental.Application.Features.Commands.Reservations.ConfirmReservation;
 using CarRental.Application.Features.Commands.Reservations.CreateReservation;
+using CarRental.Application.Features.Commands.Users.DeleteUser;
 using CarRental.Application.Features.Queries.Reservation.GetReservationById;
 using CarRental.Application.Features.Queries.Reservation.GetReservations;
 using MediatR;
@@ -81,6 +83,17 @@ namespace CarRental.API.Controllers
                 return BadRequest(result.Error);
 
             return Ok();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+        {
+            var result = await _sender.Send(new DeleteReservationCommand(id), cancellationToken);
+
+            if (result.IsFailure)
+                return NotFound(result.Error);
+
+            return NoContent();
         }
     }
 }

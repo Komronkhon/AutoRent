@@ -16,7 +16,7 @@ namespace CarRental.Domain.Aggregates
         public decimal PricePerDay { get; private set; }
         public CarStatus Status { get; private set; }
 
-        private Car() {}
+        private Car() { }
 
         private Car(string brand, string model, int year, decimal pricePerDay)
         {
@@ -64,6 +64,28 @@ namespace CarRental.Domain.Aggregates
         {
             Status = CarStatus.Unavailable;
 
+            return _Result.Success();
+        }
+
+        public _Result Update(
+            string brand,
+            string model,
+            int year,
+            decimal pricePerDay)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            PricePerDay = pricePerDay;
+
+            MarkAsUpdated();
+
+            return _Result.Success();
+        }
+
+        public _Result Delete()
+        {
+            MarkAsDeleted();
             return _Result.Success();
         }
     }

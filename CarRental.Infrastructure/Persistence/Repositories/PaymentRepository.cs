@@ -26,7 +26,7 @@ namespace CarRental.Infrastructure.Persistence.Repositories
             return await _context.Payments.ToListAsync(cancellationToken);
         }
 
-        public async Task<Payment?> GetByIdAsync(Guid paymentId, CancellationToken cancellationToken)
+        public async Task<Payment?> GetByGuidAsync(Guid paymentId, CancellationToken cancellationToken)
         {
             var payment = await _context.Payments
                 .FirstOrDefaultAsync(x => x.Id == paymentId, cancellationToken);

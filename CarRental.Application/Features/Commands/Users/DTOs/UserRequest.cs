@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarRental.Application.Features.Commands.Users.UpdateUser.DTOs
+namespace CarRental.Application.Features.Commands.Users.DTOs
 {
     public sealed record UserRequest(
         Guid UserId,

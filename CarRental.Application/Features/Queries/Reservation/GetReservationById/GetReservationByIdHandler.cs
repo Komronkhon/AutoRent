@@ -22,7 +22,7 @@ namespace CarRental.Application.Features.Queries.Reservation.GetReservationById
             GetReservationByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var reservation = await _reservationRepository.GetByIdAsync(request.ReservationId, cancellationToken);
+            var reservation = await _reservationRepository.GetByGuidAsync(request.ReservationId, cancellationToken);
 
             if (reservation is null)
                 return "Reservation not found.";

@@ -21,7 +21,7 @@ namespace CarRental.Application.Features.Queries.Payments.GetPaymentById
 
         public async Task<_Result<PaymentResponse>> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
         {
-            var payment = await _paymentRepository.GetByIdAsync(request.PaymentId, cancellationToken);
+            var payment = await _paymentRepository.GetByGuidAsync(request.PaymentId, cancellationToken);
 
             if (payment is null)
                 return "Payment not found.";

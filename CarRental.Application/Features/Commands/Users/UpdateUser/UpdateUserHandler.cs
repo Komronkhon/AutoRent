@@ -21,7 +21,7 @@ namespace CarRental.Application.Features.Commands.Users.UpdateUser
         {
             var user = await _userRepository.GetByGuidAsync(command.UserId, cancellationToken);
 
-            if (user is not null)
+            if (user is null)
                 return "User not found";
 
             var fullName = FullName.Create(command.FullName);

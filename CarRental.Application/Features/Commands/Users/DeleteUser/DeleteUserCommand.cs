@@ -6,5 +6,5 @@ using System.Text;
 
 namespace CarRental.Application.Features.Commands.Users.DeleteUser
 {
-    public sealed record DeleteUserCommand(Guid UserId) : IRequest<_Result>;
+    public sealed record DeleteCarCommand(Guid UserId) : IRequest<_Result>;
 }

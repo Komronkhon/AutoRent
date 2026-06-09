@@ -8,7 +8,7 @@ namespace CarRental.Application.Abstractions
     public interface ICarRepository
     {
         Task<List<Car>> GetAllAsync(CancellationToken cancellationToken);
-        Task<Car?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<Car?> GetByGuidAsync(Guid id, CancellationToken cancellationToken);
         Task AddAsync(Car car, CancellationToken cancellationToken);
     }
 }

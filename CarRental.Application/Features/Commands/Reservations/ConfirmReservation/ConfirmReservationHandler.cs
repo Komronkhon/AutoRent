@@ -20,7 +20,7 @@ namespace CarRental.Application.Features.Commands.Reservations.ConfirmReservatio
 
         public async Task<_Result> Handle(ConfirmReservationCommand request, CancellationToken cancellationToken)
         {
-            var reservation =  await _reservationRepository.GetByIdAsync(request.ReservationId, cancellationToken);
+            var reservation =  await _reservationRepository.GetByGuidAsync(request.ReservationId, cancellationToken);
 
             if (reservation is null)
                 return "Reservation not found.";

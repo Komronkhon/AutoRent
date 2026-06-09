@@ -27,7 +27,7 @@ namespace CarRental.Application.Features.Commands.Reservations.CompleteReservati
 
         public async Task<_Result> Handle(CompleteReservationCommand request, CancellationToken cancellationToken)
         {
-            var reservation = await _reservationRepository.GetByIdAsync(request.ReservationId, cancellationToken);
+            var reservation = await _reservationRepository.GetByGuidAsync(request.ReservationId, cancellationToken);
 
             if (reservation is null)
                 return "Reservation not found.";
@@ -35,7 +35,7 @@ namespace CarRental.Application.Features.Commands.Reservations.CompleteReservati
             if (reservation.Status != ReservationStatus.Confirmed)
                 return "Only confirmed reservations can be completed.";
 
-            var car = await _carRepository.GetByIdAsync(reservation.CarId, cancellationToken);
+            var car = await _carRepository.GetByGuidAsync(reservation.CarId, cancellationToken);
 
             if (car is null)
                 return "Car not found.";

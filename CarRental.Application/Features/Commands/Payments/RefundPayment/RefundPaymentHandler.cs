@@ -30,7 +30,7 @@ namespace CarRental.Application.Features.Commands.Payments.RefundPayment
 
         public async Task<_Result> Handle(RefundPaymentCommand request, CancellationToken cancellationToken)
         {
-            var payment = await _paymentRepository.GetByIdAsync(request.PaymentId, cancellationToken);
+            var payment = await _paymentRepository.GetByGuidAsync(request.PaymentId, cancellationToken);
 
             if (payment is null)
                 return "Payment not found.";
@@ -40,7 +40,7 @@ namespace CarRental.Application.Features.Commands.Payments.RefundPayment
             if (result.IsFailure)
                 return result.Error!;
 
-            var reservation = await _reservationRepository.GetByIdAsync(payment.ReservationId, cancellationToken);
+            var reservation = await _reservationRepository.GetByGuidAsync(payment.ReservationId, cancellationToken);
 
             if (reservation is null)
                 return "Reservation not found.";
@@ -50,7 +50,7 @@ namespace CarRental.Application.Features.Commands.Payments.RefundPayment
             if(reservationResult.IsFailure)
                 return reservationResult.Error!;
 
-            var car = await _carRepository.GetByIdAsync(reservation.CarId, cancellationToken);
+            var car = await _carRepository.GetByGuidAsync(reservation.CarId, cancellationToken);
 
             if (car is null)
                 return "Car not found.";

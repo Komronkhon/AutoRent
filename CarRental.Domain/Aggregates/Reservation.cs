@@ -67,5 +67,10 @@ namespace CarRental.Domain.Aggregates
 
             return _Result.Success();
         }
+        public _Result Delete()
+        {
+            MarkAsDeleted();
+            return _Result.Success();
+        }
     }
 }

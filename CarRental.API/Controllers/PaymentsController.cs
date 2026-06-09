@@ -1,5 +1,6 @@
 ﻿using CarRental.Application.Features.Commands.Payments.ConfirmPayment;
 using CarRental.Application.Features.Commands.Payments.CreatePayment;
+using CarRental.Application.Features.Commands.Payments.DeletePayment;
 using CarRental.Application.Features.Commands.Payments.FailPayment;
 using CarRental.Application.Features.Commands.Payments.RefundPayment;
 using CarRental.Application.Features.Queries.Payments.GetPayment;
@@ -81,6 +82,17 @@ namespace CarRental.API.Controllers
                 return BadRequest(result.Error);
 
             return Ok();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+        {
+            var result = await _sender.Send(new DeletePaymentCommand(id), cancellationToken);
+
+            if (result.IsFailure)
+                return NotFound(result.Error);
+
+            return NoContent();
         }
     }
 }

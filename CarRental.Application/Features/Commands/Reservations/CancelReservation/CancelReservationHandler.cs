@@ -23,12 +23,12 @@ namespace CarRental.Application.Features.Commands.Reservations.CancelReservation
 
         public async Task<_Result> Handle(CancelReservationCommand request, CancellationToken cancellationToken)
         {
-            var reservation = await _reservationRepository.GetByIdAsync(request.ReservationId, cancellationToken);
+            var reservation = await _reservationRepository.GetByGuidAsync(request.ReservationId, cancellationToken);
 
             if (reservation is null)
                 return "Reservation not found.";
 
-            var car = await _carRepository.GetByIdAsync(reservation.CarId, cancellationToken);
+            var car = await _carRepository.GetByGuidAsync(reservation.CarId, cancellationToken);
 
             if (car is null)
                 return "Car not found.";

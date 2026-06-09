@@ -1,32 +1,31 @@
 ﻿using CarRental.Application.Abstractions;
-using CarRental.Application.Features.Commands.Payments.ConfirmPayment;
 using CarRental.Domain.Common;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace CarRental.Application.Features.Commands.Payments.FailPayment
+namespace CarRental.Application.Features.Commands.Payments.DeletePayment
 {
-    public class ComfirmPaymentHandler : IRequestHandler<FailPaymentCommand, _Result>
+    public sealed class DeletePaymentHandler : IRequestHandler<DeletePaymentCommand, _Result>
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ComfirmPaymentHandler(IPaymentRepository paymentRepository, IUnitOfWork unitOfWork)
+        public DeletePaymentHandler(IPaymentRepository paymentRepository, IUnitOfWork unitOfWork)
         {
             _paymentRepository = paymentRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<_Result> Handle(FailPaymentCommand request, CancellationToken cancellationToken)
+        public async Task<_Result> Handle(DeletePaymentCommand request, CancellationToken cancellationToken)
         {
             var payment = await _paymentRepository.GetByGuidAsync(request.PaymentId, cancellationToken);
 
             if (payment is null)
-                return "Payment not found.";
+                return "User not found";
 
-            var result = payment.Fail();
-
-            if (result.IsFailure)
-                return result.Error!;
+            payment.Delete();
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

@@ -8,7 +8,7 @@ namespace CarRental.Application.Abstractions
     public interface IPaymentRepository
     {
         Task AddAsync(Payment payment, CancellationToken cancellationToken);
-        Task<Payment?> GetByIdAsync(Guid paymentId, CancellationToken cancellationToken);
+        Task<Payment?> GetByGuidAsync(Guid paymentId, CancellationToken cancellationToken);
         Task<List<Payment>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

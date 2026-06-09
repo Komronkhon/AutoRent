@@ -42,7 +42,7 @@ namespace CarRental.Infrastructure.Persistence.Repositories
             return await _context.Reservations.ToListAsync(cancellationToken);
         }
 
-        public async Task<Reservation?> GetByIdAsync(Guid reservationId, CancellationToken cancellationToken)
+        public async Task<Reservation?> GetByGuidAsync(Guid reservationId, CancellationToken cancellationToken)
         {
             var reservation = await _context.Reservations
                 .FirstOrDefaultAsync(x => x.Id == reservationId, cancellationToken);

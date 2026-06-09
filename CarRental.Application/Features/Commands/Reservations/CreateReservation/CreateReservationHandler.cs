@@ -32,7 +32,7 @@ namespace CarRental.Application.Features.Commands.Reservations.CreateReservation
             if (user is null)
                 return "User not found.";
 
-            var car = await _carRepository.GetByIdAsync(request.CarId, cancellationToken);
+            var car = await _carRepository.GetByGuidAsync(request.CarId, cancellationToken);
 
             if (car is null)
                 return "Car not found.";

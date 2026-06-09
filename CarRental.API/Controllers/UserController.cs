@@ -1,7 +1,7 @@
 ﻿using CarRental.Application.Features.Commands.Users.DeleteUser;
+using CarRental.Application.Features.Commands.Users.DTOs;
 using CarRental.Application.Features.Commands.Users.RegisterUser;
 using CarRental.Application.Features.Commands.Users.UpdateUser;
-using CarRental.Application.Features.Commands.Users.UpdateUser.DTOs;
 using CarRental.Application.Features.Queries.Users;
 using CarRental.Application.Features.Queries.Users.GetUserById;
 using CarRental.Application.Features.Queries.Users.GetUsers;
@@ -73,7 +73,7 @@ namespace CarRental.API.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var result = await _sender.Send(new DeleteUserCommand(id), cancellationToken);
+            var result = await _sender.Send(new DeleteCarCommand(id), cancellationToken);
 
             if (result.IsFailure)
                 return NotFound(result.Error);

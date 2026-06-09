@@ -8,18 +8,18 @@ using System.Text;
 
 namespace CarRental.Application.Features.Commands.Users.DeleteUser
 {
-    public sealed class DeleteUserHandler : IRequestHandler<DeleteUserCommand, _Result>
+    public sealed class DeletePaymentHandler : IRequestHandler<DeleteCarCommand, _Result>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteUserHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public DeletePaymentHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<_Result> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        public async Task<_Result> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByGuidAsync(request.UserId, cancellationToken);
 
